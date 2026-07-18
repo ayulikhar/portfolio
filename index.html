@@ -162,8 +162,8 @@
     width:100%; height:100%; object-fit:cover; border-radius:7px; display:block;
     position:absolute; top:0; left:0;
   }
-  .thumb-still{opacity:1; transition:opacity .2s ease;}
-  .thumb-video{opacity:0; transition:opacity .2s ease;}
+  .thumb-still{opacity:1; transition:opacity .2s ease; z-index:1;}
+  .thumb-video{opacity:0; transition:opacity .2s ease; z-index:2;}
   .project-card:hover .thumb-still{opacity:0;}
   .project-card:hover .thumb-video{opacity:1;}
   .project-mid{flex:1; min-width:0; font-family:Georgia, serif;}
@@ -313,7 +313,7 @@
         <a class="project-card" data-category="robotics" href="PLACEHOLDER_GITHUB_WAREHOUSE_SWARM" target="_blank" rel="noopener">
           <div class="project-thumb">
             <img src="assets/warehouse-swarm-poster.jpg" alt="Warehouse Swarm Logistics Framework" class="thumb-still">
-            <video class="thumb-video" src="assets/warehouse-swarm.mp4" muted loop playsinline preload="none"></video>
+            <video class="thumb-video" src="assets/warehouse_sim.mp4" muted loop playsinline preload="metadata"></video>
           </div>
           <div class="project-mid">
             <p class="project-title">Warehouse Swarm Logistics Framework</p>
@@ -397,10 +397,47 @@
     });
   });
 
+  // Capture a video frame as the thumbnail still when no poster image exists
+  function setStillFromVideo(video, still) {
+    const capture = () => {
+      if (!video.videoWidth) return;
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      still.src = canvas.toDataURL('image/jpeg', 0.85);
+    };
+
+    const seekAndCapture = () => {
+      video.addEventListener('seeked', capture, { once: true });
+      video.currentTime = Math.min(0.5, video.duration || 0.5);
+    };
+
+    if (video.readyState >= 2) {
+      seekAndCapture();
+    } else {
+      video.preload = 'metadata';
+      video.addEventListener('loadeddata', seekAndCapture, { once: true });
+      video.load();
+    }
+  }
+
   // Play/pause hover video per project card
   cards.forEach(card => {
     const video = card.querySelector('.thumb-video');
+    const still = card.querySelector('.thumb-still');
     if (!video) return;
+
+    if (still) {
+      still.addEventListener('error', () => setStillFromVideo(video, still));
+      if (!still.complete || still.naturalWidth === 0) {
+        still.addEventListener('load', () => {
+          if (still.naturalWidth === 0) setStillFromVideo(video, still);
+        });
+        if (still.complete && still.naturalWidth === 0) setStillFromVideo(video, still);
+      }
+    }
+
     card.addEventListener('mouseenter', () => {
       video.currentTime = 0;
       video.play().catch(() => {});
