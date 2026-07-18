@@ -24,7 +24,7 @@
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
-
+ 
   body{
     margin:0; background:var(--bg); color:var(--ink);
     font-family:'Lora', Georgia, serif;
@@ -33,7 +33,7 @@
   a{color:var(--accent-ink); text-decoration:none;}
   a:hover, a:focus-visible{text-decoration:underline;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
-
+ 
   /* NAV */
   header.nav{
     position:sticky; top:0; background:rgba(245,242,234,0.9);
@@ -58,9 +58,9 @@
     nav.links.open{display:flex;}
     .nav-toggle{display:block;}
   }
-
+ 
   main{padding-bottom:40px;}
-
+ 
   /* HERO */
   .hero{padding:60px 0 12px;}
   .hero-row{display:flex; gap:32px; align-items:flex-start;}
@@ -71,7 +71,10 @@
     background:var(--card-bg); border:1px solid var(--border);
     display:flex; align-items:center; justify-content:center;
     color:var(--faint); font-size:11px; text-align:center; padding:8px; line-height:1.4;
-    font-family:Georgia, serif;
+    font-family:Georgia, serif; overflow:hidden;
+  }
+  .photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
   }
   @media (max-width:520px){
     .hero-row{flex-direction:column-reverse;}
@@ -79,12 +82,16 @@
   }
   .contact-links{display:flex; flex-wrap:wrap; gap:4px 0; font-size:15px; font-family:Georgia, serif;}
   .contact-links a{margin-right:18px;}
-
+  .hero-summary{
+    margin:28px 0 0; font-size:15.5px; line-height:1.65;
+    color:var(--ink); font-family:Georgia, serif;
+  }
+ 
   section{padding:48px 0 0;}
   h2.section-title{
     font-size:30px; font-weight:600; margin:0 0 24px; letter-spacing:-0.01em;
   }
-
+ 
   /* RESEARCH */
   .research-item{
     display:flex; gap:18px; margin-bottom:16px; padding:20px 22px;
@@ -92,8 +99,10 @@
   }
   .research-thumb{
     width:96px; height:70px; flex-shrink:0; border-radius:8px; background:var(--bg);
-    border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
-    color:var(--faint); font-size:10px; text-align:center; padding:6px; font-family:Georgia, serif;
+    border:1px solid var(--border); overflow:hidden;
+  }
+  .research-thumb img{
+    width:100%; height:100%; object-fit:cover; display:block;
   }
   .research-title{font-weight:600; font-size:16px; margin:0 0 5px; line-height:1.4; font-family:Georgia, serif;}
   .research-venue{font-size:13px; color:var(--muted); margin:0 0 7px; font-family:Georgia, serif;}
@@ -104,7 +113,7 @@
     .research-item{flex-direction:column;}
     .research-thumb{width:100%; height:64px;}
   }
-
+ 
   /* EXPERIENCE — bordered 2-col card grid */
   .exp-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:16px;
@@ -124,7 +133,7 @@
   .exp-org{font-weight:700; font-size:15.5px; color:var(--ink);}
   .exp-date{font-size:13px; color:var(--muted); margin-top:3px;}
   .exp-role{font-size:14px; color:var(--ink); margin-top:5px;}
-
+ 
   /* PROJECTS */
   .filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; font-family:Georgia, serif;}
   .filter-btn{
@@ -170,7 +179,7 @@
     .project-thumb{width:100%; height:120px;}
     .project-cat{margin-left:auto;}
   }
-
+ 
   /* FOOTER */
   footer{padding:48px 0 56px; font-family:Georgia, serif;}
   .foot-links{font-size:15px;}
@@ -179,7 +188,7 @@
 </style>
 </head>
 <body>
-
+ 
 <header class="nav">
   <div class="nav-inner">
     <a class="brand" href="#top">Ayush Likhar</a>
@@ -193,7 +202,7 @@
     </button>
   </div>
 </header>
-
+ 
 <main id="top">
 
   <!-- HERO -->
@@ -209,8 +218,9 @@
             <a href="www.linkedin.com/in/ayush-likhar-2a067a273" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
-        <div class="photo">[Portrait photo]</div>
+        <div class="photo"><img src="assets/profile.png" alt="Ayush Likhar"></div>
       </div>
+      <p class="hero-summary">I'm an engineering student passionate about robotics and AI, with a growing interest in embodied intelligence and human-robot interaction. I enjoy taking ideas from research papers to working prototypes, whether that's building robots, creating simulations, or experimenting with machine learning. Most of what I know has come from curiosity, countless side projects, and learning by doing. I'm always excited to explore new technologies, collaborate with people, and build things that solve real problems.</p>
     </div>
   </section>
 
@@ -219,14 +229,15 @@
     <div class="wrap">
       <h2 class="section-title">Research</h2>
       <div class="research-item">
-        <div class="research-thumb">[Figure]</div>
+        <div class="research-thumb"><img src="assets/Figure%201.jpg" alt="Comparative molecular signatures of neuroprotection in Parkinson's disease"></div>
         <div>
           <p class="research-title">Comparative molecular signatures of neuroprotection in Parkinson's disease across zebrafish and naked mole rat models</p>
           <p class="research-venue">Likhar, A., &amp; Warke, N. (2026) · Discover Neuroscience, 21(37)</p>
           <p class="research-desc">Co-authored comparative bioinformatics study mapping neuroprotective pathways under the mentorship of Dr. Nilima Warke.</p>
-          <p class="research-links"><a href="https://doi.org/10.1186/s13064-026-00267-4" target="_blank" rel="noopener">Springer</a></p>
-          <p class="research-links"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=fjFKLiYAAAAJ&citation_for_view=fjFKLiYAAAAJ:u5HHmVD_uO8C" target="_blank" rel="noopener">Google Scholar</a></p>
-        
+          <p class="research-links">
+            <a href="https://doi.org/10.1186/s13064-026-00267-4" target="_blank" rel="noopener">Springer</a>
+            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=fjFKLiYAAAAJ&citation_for_view=fjFKLiYAAAAJ:u5HHmVD_uO8C" target="_blank" rel="noopener">Google Scholar</a>
+          </p>
         </div>
       </div>
     </div>
