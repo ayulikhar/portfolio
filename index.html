@@ -146,11 +146,17 @@
     width:150px; height:96px; flex-shrink:0; border-radius:8px; background:var(--card-bg);
     border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
     color:var(--faint); font-size:10px; text-align:center; padding:6px; font-family:Georgia, serif;
-    overflow:hidden;
+    overflow:hidden; position:relative;
   }
-  .project-thumb img{
+  .project-thumb img,
+  .project-thumb video{
     width:100%; height:100%; object-fit:cover; border-radius:7px; display:block;
+    position:absolute; top:0; left:0;
   }
+  .thumb-still{opacity:1; transition:opacity .2s ease;}
+  .thumb-video{opacity:0; transition:opacity .2s ease;}
+  .project-card:hover .thumb-still{opacity:0;}
+  .project-card:hover .thumb-video{opacity:1;}
   .project-mid{flex:1; min-width:0; font-family:Georgia, serif;}
   .project-title{font-weight:700; font-size:16px; color:var(--ink); margin:0 0 5px;}
   .project-desc{font-size:14px; color:var(--muted); margin:0;}
@@ -200,7 +206,7 @@
             <a href="mailto:ayulikhar@gmail.com">Email</a>
             <a href="https://scholar.google.com/citations?user=fjFKLiYAAAAJ&hl=en&authuser=1" target="_blank" rel="noopener">Google Scholar</a>
             <a href="https://github.com/ayulikhar" target="_blank" rel="noopener">GitHub</a>
-            <a href="PLACEHOLDER_LINKEDIN_URL" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="www.linkedin.com/in/ayush-likhar-2a067a273" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
         <div class="photo">[Portrait photo]</div>
@@ -218,7 +224,9 @@
           <p class="research-title">Comparative molecular signatures of neuroprotection in Parkinson's disease across zebrafish and naked mole rat models</p>
           <p class="research-venue">Likhar, A., &amp; Warke, N. (2026) · Discover Neuroscience, 21(37)</p>
           <p class="research-desc">Co-authored comparative bioinformatics study mapping neuroprotective pathways under the mentorship of Dr. Nilima Warke.</p>
-          <p class="research-links"><a href="https://doi.org/10.1186/s13064-026-00267-4" target="_blank" rel="noopener">Paper</a></p>
+          <p class="research-links"><a href="https://doi.org/10.1186/s13064-026-00267-4" target="_blank" rel="noopener">Springer</a></p>
+          <p class="research-links"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=fjFKLiYAAAAJ&citation_for_view=fjFKLiYAAAAJ:u5HHmVD_uO8C" target="_blank" rel="noopener">Google Scholar</a></p>
+        
         </div>
       </div>
     </div>
@@ -291,8 +299,11 @@
       </div>
       <div class="project-grid" id="projectGrid">
 
-        <a class="project-card" data-category="robotics" href="https://github.com/ayulikhar/Warehouse-Swarm" target="_blank" rel="noopener">
-          <div class="project-thumb">[Image]</div>
+        <a class="project-card" data-category="robotics" href="PLACEHOLDER_GITHUB_WAREHOUSE_SWARM" target="_blank" rel="noopener">
+          <div class="project-thumb">
+            <img src="assets/warehouse-swarm-poster.jpg" alt="Warehouse Swarm Logistics Framework" class="thumb-still">
+            <video class="thumb-video" src="assets/warehouse-swarm.mp4" muted loop playsinline preload="none"></video>
+          </div>
           <div class="project-mid">
             <p class="project-title">Warehouse Swarm Logistics Framework</p>
             <p class="project-desc">Multi-robot swarm pipeline with dynamic task allocation and collision-safe state management for fulfillment routing.</p>
@@ -300,8 +311,11 @@
           <span class="project-cat">Robotics</span>
         </a>
 
-        <a class="project-card" data-category="robotics" href="https://github.com/ayulikhar/ros2-lidar-obstacle-avoidance" target="_blank" rel="noopener">
-          <div class="project-thumb">[Image]</div>
+        <a class="project-card" data-category="robotics" href="PLACEHOLDER_GITHUB_ROS2_NAV" target="_blank" rel="noopener">
+          <div class="project-thumb">
+            <img src="assets/ros2-nav-poster.jpg" alt="ROS2 Autonomous Navigation" class="thumb-still">
+            <video class="thumb-video" src="assets/ros2-nav.mp4" muted loop playsinline preload="none"></video>
+          </div>
           <div class="project-mid">
             <p class="project-title">ROS2 Autonomous Navigation (A* + LiDAR Avoidance)</p>
             <p class="project-desc">Custom A* global planner with LiDAR-based reactive avoidance using hysteresis-controlled FSM logic.</p>
@@ -309,8 +323,11 @@
           <span class="project-cat">Robotics</span>
         </a>
 
-        <a class="project-card" data-category="embedded" href="https://github.com/ayulikhar/AirQuality-MQ-DHT-Monitor" target="_blank" rel="noopener">
-          <div class="project-thumb">[Image]</div>
+        <a class="project-card" data-category="embedded" href="PLACEHOLDER_GITHUB_AIR_QUALITY" target="_blank" rel="noopener">
+          <div class="project-thumb">
+            <img src="assets/air-quality-poster.jpg" alt="Air Quality Monitoring System" class="thumb-still">
+            <video class="thumb-video" src="assets/air-quality.mp4" muted loop playsinline preload="none"></video>
+          </div>
           <div class="project-mid">
             <p class="project-title">Air Quality Monitoring System (PM2.5 &amp; PM10)</p>
             <p class="project-desc">Sensor-integrated PM2.5/PM10 monitoring with real-time filtering and serial data visualization.</p>
@@ -318,8 +335,11 @@
           <span class="project-cat">Embedded</span>
         </a>
 
-        <a class="project-card" data-category="software" href="https://github.com/ayulikhar/documind-ocr-app" target="_blank" rel="noopener">
-          <div class="project-thumb">[Image]</div>
+        <a class="project-card" data-category="software" href="PLACEHOLDER_GITHUB_DOCUMIND" target="_blank" rel="noopener">
+          <div class="project-thumb">
+            <img src="assets/documind-poster.jpg" alt="DocuMind" class="thumb-still">
+            <video class="thumb-video" src="assets/documind.mp4" muted loop playsinline preload="none"></video>
+          </div>
           <div class="project-mid">
             <p class="project-title">DocuMind</p>
             <p class="project-desc">OCR-based Streamlit app that extracts, corrects, summarizes, and translates text using Tesseract and Google Translate.</p>
@@ -363,6 +383,19 @@
         const show = filter === 'all' || card.dataset.category === filter;
         card.classList.toggle('hidden', !show);
       });
+    });
+  });
+
+  // Play/pause hover video per project card
+  cards.forEach(card => {
+    const video = card.querySelector('.thumb-video');
+    if (!video) return;
+    card.addEventListener('mouseenter', () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    });
+    card.addEventListener('mouseleave', () => {
+      video.pause();
     });
   });
 </script>
